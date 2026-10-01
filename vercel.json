@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/provider/:id", "destination": "/provider.html" }
+    { "source": "/provider/:id", "destination": "/provider.html" },
+    { "source": "/reset-password", "destination": "/reset-password.html" }
   ],
   "redirects": [
     {
@@ -16,6 +17,8 @@
       "permanent": false
     },
     { "source": "/app", "destination": "/", "permanent": false },
+    { "source": "/ios", "destination": "https://apps.apple.com/app/id6755406129", "permanent": false },
+    { "source": "/android", "destination": "https://play.google.com/store/apps/details?id=com.ezraworking", "permanent": false },
     { "source": "/book/:path*", "destination": "/app", "permanent": false },
     { "source": "/booking/:path*", "destination": "/app", "permanent": false },
     { "source": "/rebook/:path*", "destination": "/app", "permanent": false },

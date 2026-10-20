@@ -872,6 +872,62 @@
         details summary > span { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
         details[open] summary > span { transform: rotate(45deg); }
 
+        /* ── Visible redesign (Oct 2026) ── */
+        /* Header: a real frosted material; a soft shadow replaces the hard grey line once content scrolls under it */
+        #header { background: rgba(255,255,255,0.72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); border-bottom-color: transparent; }
+        #header.scrolled { background: rgba(255,255,255,0.82); box-shadow: 0 1px 0 rgba(15,31,53,0.06), 0 12px 24px -18px rgba(15,31,53,0.35); }
+
+        /* Hero: Client / Prestataire switch above a phone you can swipe */
+        .hero-visual { flex-direction: column; gap: 1.25rem; }
+        .screen-tabs { order: -1; position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 999px; background: rgba(15,31,53,0.06); }
+        .screen-tabs-thumb { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: #fff;
+                             box-shadow: 0 1px 3px rgba(15,31,53,0.12), 0 6px 14px -6px rgba(15,31,53,0.2); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+        .screen-tabs[data-side="provider"] .screen-tabs-thumb { transform: translateX(100%); }
+        .screen-tab { position: relative; z-index: 1; border: 0; background: none; cursor: pointer; min-height: 40px; padding: 0 1.25rem;
+                      font: 600 0.9rem/1 var(--font-primary); color: var(--gray-600); border-radius: 999px; transition: color .2s ease; }
+        .screen-tab[aria-pressed="true"] { color: var(--gray-900); }
+        .screen-tab:active { transform: scale(.97); }
+        .screen-track { display: flex; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; will-change: transform; }
+        .screen-track:active { cursor: grabbing; }
+        .screen-track .app-screen { position: relative; inset: auto; flex: 0 0 100%; height: 100%; opacity: 1; transition: none; }
+        .screen-track img { pointer-events: none; }
+
+        /* Trust chips replace the words-dressed-as-numbers stats row */
+        .hero-trust { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+        .hero-trust li { display: inline-flex; align-items: center; gap: .45rem; padding: .5rem .9rem; border-radius: 999px; background: #fff;
+                         border: 1px solid var(--gray-200); font-size: .875rem; font-weight: 600; color: var(--gray-700); }
+        .hero-trust svg { width: 16px; height: 16px; fill: none; stroke: var(--ezra-orange); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+        /* Service cards are links now, with a specific label saying where they go */
+        a.service-card { display: block; color: inherit; text-decoration: none; }
+        .service-link { display: inline-flex; align-items: center; gap: .35rem; margin-top: 1rem; font-size: .9rem; font-weight: 700; color: var(--ezra-orange); }
+        .service-link span { display: inline-block; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+        @media (hover: hover) { a.service-card:hover .service-link span { transform: translateX(4px); } }
+
+        /* Mobile action bar */
+        .mobile-action-bar { display: none; }
+        @media (max-width: 768px) {
+            .hero-trust { justify-content: center; }
+            .hero-trust { gap: .4rem; }
+            .hero-trust li { font-size: .78rem; padding: .4rem .65rem; gap: .35rem; }
+            .whatsapp-float { display: none; }
+            .mobile-action-bar { display: flex; gap: .5rem; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 998;
+                                 padding: 6px; border-radius: 20px; background: rgba(255,255,255,0.72);
+                                 -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+                                 border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 12px 30px -12px rgba(15,31,53,0.4), 0 0 0 1px rgba(15,31,53,0.04);
+                                 transform: translateY(calc(100% + 24px)); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+            .mobile-action-bar.visible { transform: none; }
+            .mab-primary { flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; border-radius: 14px;
+                           background: linear-gradient(135deg, var(--ezra-orange), var(--ezra-orange-dark)); color: #fff; font-weight: 700; text-decoration: none; }
+            .mab-whatsapp { flex: 0 0 48px; height: 48px; border-radius: 14px; background: #25D366; display: flex; align-items: center; justify-content: center; }
+            .mab-whatsapp svg { width: 24px; height: 24px; }
+            .mab-primary:active, .mab-whatsapp:active { transform: scale(.97); }
+            footer { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+        }
+        @media (prefers-reduced-transparency: reduce) {
+            #header, .mobile-action-bar { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
@@ -919,20 +975,11 @@
                     <a href="#download" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Télécharger l'App</a>
                     <a href="#services" class="btn-secondary">Découvrir les services</a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">Approuvés</span>
-                        <span class="stat-label">Profils sélectionnés</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">MoMo</span>
-                        <span class="stat-label">MTN, Orange ou espèces</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">WhatsApp</span>
-                        <span class="stat-label">Support réactif</span>
-                    </div>
-                </div>
+                <ul class="hero-trust" aria-label="Pourquoi choisir Ezra">
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Profils vérifiés</li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M16 15h2"/></svg>Mobile Money ou espèces</li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Support WhatsApp</li>
+                </ul>
             </div>
 
             <!-- Animated Phone Mockup -->
@@ -941,25 +988,27 @@
                     <div class="phone-frame">
                         <div class="phone-notch"></div>
                         <div class="phone-screen">
+                            <div class="screen-track" id="screen-track">
 
                             <!-- Screen 1: Customer Home -->
                             <div class="app-screen active" id="screen-0">
-                                <img src="assets/images/app-screen-1.webp" width="369" height="800" decoding="async" alt="Accueil client EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-1.webp" draggable="false" width="369" height="800" decoding="async" alt="Accueil client EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 2: Customer Bookings -->
                             <div class="app-screen" id="screen-1">
-                                <img src="assets/images/app-screen-2.webp" width="369" height="800" decoding="async" alt="Réservations EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-2.webp" draggable="false" width="369" height="800" decoding="async" alt="Réservations EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 3: Provider Revenue -->
                             <div class="app-screen" id="screen-2">
-                                <img src="assets/images/app-screen-3.webp" width="369" height="800" decoding="async" alt="Revenus prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-3.webp" draggable="false" width="369" height="800" decoding="async" alt="Revenus prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 4: Provider Profile -->
                             <div class="app-screen" id="screen-3">
-                                <img src="assets/images/app-screen-4.webp" width="369" height="800" decoding="async" alt="Profil prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-4.webp" draggable="false" width="369" height="800" decoding="async" alt="Profil prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                            </div>
                             </div>
 
                         </div><!-- /phone-screen -->
@@ -976,6 +1025,11 @@
                 <div class="floating-badge"><span class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Profil contrôlé</div>
                 <div class="floating-badge"><span class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> 0% commission Ezra</div>
                 <div class="floating-badge"><span class="badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span> Paiement sécurisé</div>
+                <div class="screen-tabs" data-side="client">
+                    <span class="screen-tabs-thumb" aria-hidden="true"></span>
+                    <button type="button" class="screen-tab" data-target="0" aria-pressed="true">Client</button>
+                    <button type="button" class="screen-tab" data-target="2" aria-pressed="false">Prestataire</button>
+                </div>
             </div>
         </div>
     </section>
@@ -989,7 +1043,7 @@
                 <p class="section-subtitle">Des professionnels pour tous vos besoins quotidiens à Douala et Yaoundé</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <a class="service-card" href="#download">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -997,8 +1051,9 @@
                     </div>
                     <h3>Beauté & Bien-être</h3>
                     <p>Maquillage, esthéticienne, ongles, massage — à domicile, sur rendez-vous.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-link">Réserver dans l'app <span aria-hidden="true">→</span></span>
+                </a>
+                <a class="service-card" href="/plombier-douala">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
@@ -1006,8 +1061,9 @@
                     </div>
                     <h3>Plomberie & Électricité</h3>
                     <p>Interventions d'urgence, réparations et installations par des professionnels.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-link">Plomberie à Douala <span aria-hidden="true">→</span></span>
+                </a>
+                <a class="service-card" href="/menage-domicile-douala">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
@@ -1016,8 +1072,9 @@
                     </div>
                     <h3>Ménage & Nettoyage</h3>
                     <p>Services de nettoyage résidentiel et commercial avec personnel formé et équipé.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-link">Ménage à Douala <span aria-hidden="true">→</span></span>
+                </a>
+                <a class="service-card" href="#download">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect width="14" height="8" x="5" y="2" rx="2"/>
@@ -1027,8 +1084,9 @@
                     </div>
                     <h3>Réparations Tech</h3>
                     <p>Téléphones, laptops, tablettes — diagnostic et réparation rapide.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-link">Réserver dans l'app <span aria-hidden="true">→</span></span>
+                </a>
+                <a class="service-card" href="#download">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
@@ -1039,8 +1097,9 @@
                     </div>
                     <h3>Transport & Déménagement</h3>
                     <p>Transport sécurisé et déménagement avec suivi en temps réel.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-link">Réserver dans l'app <span aria-hidden="true">→</span></span>
+                </a>
+                <a class="service-card" href="#download">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="var(--ezra-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"/>
@@ -1050,7 +1109,8 @@
                     </div>
                     <h3>Réparations & Bricolage</h3>
                     <p>Menuiserie, peinture, et tous travaux de rénovation par des artisans experts.</p>
-                </div>
+                    <span class="service-link">Réserver dans l'app <span aria-hidden="true">→</span></span>
+                </a>
             </div>
         </div>
     </section>
@@ -1398,6 +1458,11 @@
 
     <!-- WhatsApp Float -->
     <a class="whatsapp-float" href="https://wa.me/237658837203?text=Bonjour%21+Je+souhaite+utiliser+les+services+Ezra." target="_blank" rel="noopener" aria-label="Contacter via WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+    <!-- Mobile action bar: download + WhatsApp within thumb reach, appears once the hero buttons scroll away -->
+    <div class="mobile-action-bar" id="mobile-action-bar" inert>
+        <a class="mab-primary" href="/app"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Télécharger l'app</a>
+        <a class="mab-whatsapp" href="https://wa.me/237658837203?text=Bonjour%21+Je+souhaite+utiliser+les+services+Ezra." target="_blank" rel="noopener" aria-label="Contacter Ezra sur WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+    </div>
 
     <script>
         // Header scroll
@@ -1417,39 +1482,119 @@
         document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => setMenu(false)));
         document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-        // Phone screen carousel — the visitor stays in control: pauses while touched/hovered/focused,
-        // a dot tap restarts the full interval, and it never auto-rotates for reduced-motion users
-        let currentScreen = 0;
-        const screens = document.querySelectorAll('.app-screen');
-        const dots = document.querySelectorAll('.screen-dot');
-        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let rotateTimer = null, holding = false;
+        // Phone screen carousel — drag it, flick it, or use the Client/Prestataire switch.
+        // Critically damped spring (Apple default: damping 1.0, response 0.4s), velocity handed off from the finger,
+        // landing point projected from momentum, soft rubber-band past the first/last screen.
+        (() => {
+            const track = document.getElementById('screen-track');
+            if (!track) return;
+            const screens = [...track.children];
+            const N = screens.length;
+            const dots = [...document.querySelectorAll('.screen-dot')];
+            const tabs = [...document.querySelectorAll('.screen-tab')];
+            const tabsBox = document.querySelector('.screen-tabs');
+            const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const OMEGA = 2 * Math.PI / 0.4;
+            let width = track.clientWidth, x = 0, v = 0, target = 0, index = 0, raf = null, last = 0;
+            let tracking = false, dragging = false, startX = 0, startY = 0, grabX = 0, history = [];
+            let autoTimer = null, tookOver = false;
 
-        function showScreen(idx) {
-            screens.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => { d.classList.remove('active'); d.removeAttribute('aria-current'); });
-            screens[idx].classList.add('active');
-            dots[idx].classList.add('active');
-            dots[idx].setAttribute('aria-current', 'true');
-            currentScreen = idx;
-        }
-        function stopRotation() { clearInterval(rotateTimer); rotateTimer = null; }
-        function startRotation() {
-            stopRotation();
-            if (reducedMotion || holding || document.hidden) return;
-            rotateTimer = setInterval(() => showScreen((currentScreen + 1) % screens.length), 3500);
-        }
+            const clamp = i => Math.max(0, Math.min(N - 1, i));
+            const rubberband = (over, dim, c = 0.55) => (over * dim * c) / (dim + c * over);
+            const project = (vel, d = 0.998) => (vel / 1000) * d / (1 - d);
+            const render = () => { track.style.transform = `translate3d(${x}px,0,0)`; };
 
-        dots.forEach(dot => dot.addEventListener('click', () => { showScreen(parseInt(dot.dataset.screen)); startRotation(); }));
-        const phone = document.querySelector('.phone-wrap');
-        if (phone) {
-            phone.addEventListener('pointerenter', () => { holding = true; stopRotation(); });
-            phone.addEventListener('pointerleave', () => { holding = false; startRotation(); });
-            phone.addEventListener('focusin', () => { holding = true; stopRotation(); });
-            phone.addEventListener('focusout', () => { holding = false; startRotation(); });
-        }
-        document.addEventListener('visibilitychange', startRotation);
-        startRotation();
+            function updateUI() {
+                dots.forEach((d, i) => { d.classList.toggle('active', i === index); i === index ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current'); });
+                const provider = index >= 2;
+                tabsBox.dataset.side = provider ? 'provider' : 'client';
+                tabs.forEach(t => t.setAttribute('aria-pressed', String((t.dataset.target === '2') === provider)));
+                screens.forEach((sc, i) => sc.setAttribute('aria-hidden', String(i !== index)));
+            }
+            function step(t) {
+                const dt = Math.min((t - last) / 1000, 1 / 30); last = t;
+                v += (-OMEGA * OMEGA * (x - target) - 2 * OMEGA * v) * dt;
+                x += v * dt;
+                if (Math.abs(v) < 4 && Math.abs(x - target) < 0.5) { x = target; v = 0; render(); raf = null; return; }
+                render(); raf = requestAnimationFrame(step);
+            }
+            function goTo(i, velocity) {
+                index = clamp(i); target = -index * width;
+                if (velocity !== undefined) v = velocity;
+                updateUI();
+                if (reducedMotion) { x = target; v = 0; render(); return; }
+                if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); }
+            }
+            function takeOver() { tookOver = true; clearInterval(autoTimer); autoTimer = null; }
+
+            track.addEventListener('pointerdown', e => {
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                tracking = true; dragging = false; startX = e.clientX; startY = e.clientY;
+                history = [{ x: e.clientX, t: e.timeStamp }];
+            });
+            track.addEventListener('pointermove', e => {
+                if (!tracking) return;
+                const dx = e.clientX - startX, dy = e.clientY - startY;
+                if (!dragging) {
+                    if (Math.hypot(dx, dy) < 10) return;                       // hysteresis before committing to a direction
+                    if (Math.abs(dy) > Math.abs(dx)) { tracking = false; return; } // vertical: let the page scroll
+                    dragging = true; takeOver();
+                    track.setPointerCapture(e.pointerId);
+                    if (raf) { cancelAnimationFrame(raf); raf = null; }          // grab it mid-flight, from where it is now
+                    grabX = x - dx;
+                }
+                let nx = grabX + dx;
+                const min = -(N - 1) * width;
+                if (nx > 0) nx = rubberband(nx, width);
+                else if (nx < min) nx = min - rubberband(min - nx, width);
+                x = nx; render();
+                history.push({ x: e.clientX, t: e.timeStamp });
+                while (history.length > 2 && e.timeStamp - history[0].t > 100) history.shift();
+            });
+            const release = () => {
+                const wasDragging = dragging; tracking = false; dragging = false;
+                if (!wasDragging) return;
+                const first = history[0], lastPt = history[history.length - 1];
+                const dt = (lastPt.t - first.t) / 1000;
+                const vel = dt > 0 ? (lastPt.x - first.x) / dt : 0;
+                const landing = Math.round(-(x + project(vel)) / width);
+                goTo(Math.max(index - 1, Math.min(index + 1, landing)), vel);  // never skip more than one screen
+            };
+            track.addEventListener('pointerup', release);
+            track.addEventListener('pointercancel', release);
+
+            dots.forEach(d => d.addEventListener('click', () => { takeOver(); goTo(+d.dataset.screen); }));
+            tabs.forEach(t => t.addEventListener('click', () => { takeOver(); goTo(+t.dataset.target); }));
+            document.querySelector('.phone-wrap').addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') { takeOver(); goTo(index + 1); }
+                if (e.key === 'ArrowLeft') { takeOver(); goTo(index - 1); }
+            });
+            window.addEventListener('resize', () => { width = track.clientWidth; x = target = -index * width; render(); });
+
+            // Gentle auto-advance until the visitor takes over; never for reduced motion, paused while hovered or hidden
+            let hovering = false;
+            const phone = document.querySelector('.phone-wrap');
+            phone.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hovering = true; });
+            phone.addEventListener('pointerleave', () => { hovering = false; });
+            if (!reducedMotion) autoTimer = setInterval(() => { if (!tookOver && !hovering && !document.hidden) goTo((index + 1) % N); }, 4000);
+            updateUI(); render();
+        })();
+
+        // Mobile action bar: shows once the hero buttons scroll away, hides again at the download section
+        (() => {
+            const bar = document.getElementById('mobile-action-bar');
+            const heroButtons = document.querySelector('.hero-buttons');
+            const download = document.getElementById('download');
+            if (!bar || !heroButtons || !('IntersectionObserver' in window)) return;
+            let heroVisible = true, downloadVisible = false;
+            const sync = () => {
+                const show = !heroVisible && !downloadVisible;
+                bar.classList.toggle('visible', show);
+                show ? bar.removeAttribute('inert') : bar.setAttribute('inert', '');
+            };
+            new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; sync(); }).observe(heroButtons);
+            if (download) new IntersectionObserver(([e]) => { downloadVisible = e.isIntersecting; sync(); }, { threshold: 0.25 }).observe(download);
+        })();
     </script>
 </body>
 </html>

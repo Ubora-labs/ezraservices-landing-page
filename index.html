@@ -143,8 +143,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
 
     <link rel="icon" type="image/png" href="assets/images/ezra-logo-new-transparent.png">
 
@@ -200,7 +200,7 @@
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
         }
         .header.scrolled { background: rgba(255,255,255,0.98); box-shadow: var(--shadow-md); }
         .nav-container {
@@ -236,7 +236,7 @@
         .cta-button {
             background: linear-gradient(135deg, var(--ezra-orange), var(--ezra-orange-dark));
             color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-lg);
-            text-decoration: none; font-weight: 600; transition: all 0.3s ease;
+            text-decoration: none; font-weight: 600; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
             box-shadow: var(--shadow-md);
         }
         .cta-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
@@ -246,7 +246,7 @@
         }
         .mobile-menu-btn span {
             width: 24px; height: 3px; background: var(--gray-700);
-            border-radius: 2px; transition: all 0.3s ease; display: block;
+            border-radius: 2px; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; display: block;
         }
 
         /* ─── HERO ─── */
@@ -284,14 +284,14 @@
             background: linear-gradient(135deg, var(--ezra-orange), var(--ezra-orange-dark));
             color: white; padding: 1rem 2rem; border-radius: var(--radius-xl);
             text-decoration: none; font-weight: 700; font-size: 1rem;
-            transition: all 0.3s ease; box-shadow: var(--shadow-lg); display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; box-shadow: var(--shadow-lg); display: inline-flex; align-items: center; gap: 0.5rem;
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
         .btn-secondary {
             background: white; color: var(--gray-700);
             padding: 1rem 2rem; border-radius: var(--radius-xl);
             text-decoration: none; font-weight: 600; font-size: 1rem;
-            transition: all 0.3s ease; box-shadow: var(--shadow-md);
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-200); display: inline-flex; align-items: center; gap: 0.5rem;
         }
         .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--ezra-orange); }
@@ -547,7 +547,7 @@
         }
         .screen-dot {
             width: 6px; height: 6px; border-radius: 50%;
-            background: var(--gray-300); transition: all 0.4s ease;
+            background: var(--gray-300); transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease, background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
         }
         .screen-dot.active { background: var(--ezra-orange); width: 18px; border-radius: 3px; }
 
@@ -582,7 +582,7 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
         .service-card {
             background: white; border-radius: var(--radius-xl); padding: 2rem;
-            text-align: center; transition: all 0.3s ease;
+            text-align: center; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
             border: 1px solid var(--gray-100); position: relative; overflow: hidden;
         }
         .service-card::before {
@@ -658,7 +658,7 @@
             display: flex; align-items: flex-start; gap: 1rem;
             background: rgba(255,255,255,0.05); border-radius: var(--radius-xl);
             padding: 1.25rem; border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
         }
         .benefit-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,107,53,0.3); }
         .benefit-icon-wrap {
@@ -704,7 +704,7 @@
             background: linear-gradient(135deg, var(--ezra-orange), var(--ezra-orange-dark));
             color: white; padding: 1rem 1.5rem; border-radius: var(--radius-xl);
             text-decoration: none; font-weight: 700; font-size: 1rem;
-            text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+            text-align: center; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; box-shadow: 0 4px 20px rgba(255,107,53,0.4);
             display: flex; align-items: center; justify-content: center; gap: 0.5rem;
         }
         .btn-provider-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,107,53,0.5); }
@@ -712,7 +712,7 @@
             background: rgba(37,211,102,0.15); color: #25D366;
             padding: 1rem 1.5rem; border-radius: var(--radius-xl);
             text-decoration: none; font-weight: 600; font-size: 0.95rem;
-            text-align: center; transition: all 0.3s ease;
+            text-align: center; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
             border: 1px solid rgba(37,211,102,0.3);
             display: flex; align-items: center; justify-content: center; gap: 0.5rem;
         }
@@ -742,7 +742,7 @@
         .download-btn {
             background: white; color: var(--gray-900); padding: 0.875rem 1.75rem;
             border-radius: var(--radius-lg); text-decoration: none; font-weight: 600;
-            transition: all 0.3s ease; display: flex; align-items: center; gap: 0.75rem;
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; display: flex; align-items: center; gap: 0.75rem;
         }
         .download-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl); }
         .download-btn-label { font-size: 0.65rem; color: var(--gray-400); display: block; }
@@ -751,7 +751,7 @@
         .engagements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .engagement-card {
             background: var(--gray-50); padding: 2rem; border-radius: var(--radius-xl);
-            border: 1px solid var(--gray-100); transition: all 0.3s ease;
+            border: 1px solid var(--gray-100); transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
         }
         .engagement-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
         .engagement-icon { width: 48px; height: 48px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; }
@@ -790,7 +790,7 @@
             width: 56px; height: 56px; background: #25D366; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             box-shadow: var(--shadow-xl); cursor: pointer; z-index: 999;
-            transition: all 0.3s ease; font-size: 1.5rem; text-decoration: none;
+            transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; font-size: 1.5rem; text-decoration: none;
         }
         .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
 
@@ -821,7 +821,67 @@
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
             .section-title { font-size: 1.875rem; }
         }
-    </style>
+    
+        /* ── Polish pass (Oct 2026): instant press feedback, visible focus, motion that respects the user ── */
+        :focus-visible { outline: 3px solid var(--ezra-orange); outline-offset: 3px; border-radius: 6px; }
+
+        /* Hover lifts only where a real pointer hovers; on touch they used to stick after a tap */
+        @media (hover: none) {
+            .cta-button:hover, .btn-primary:hover, .btn-secondary:hover, .service-card:hover,
+            .btn-provider-primary:hover, .download-btn:hover, .engagement-card:hover, .whatsapp-float:hover { transform: none; }
+        }
+        /* Feedback lives on the press, and it's instant */
+        .cta-button:active, .btn-primary:active, .btn-secondary:active, .btn-provider-primary:active,
+        .download-btn:active, .whatsapp-float:active, .nav-link:active { transform: scale(.97); transition-duration: 80ms; }
+        .service-card:active, .engagement-card:active { transform: scale(.985); transition-duration: 80ms; }
+
+        /* Tighter tracking as type grows */
+        .hero h1 { letter-spacing: -0.025em; }
+        .section-title, h2 { letter-spacing: -0.02em; }
+
+        /* Floating badges: no endless bobbing (slow loops are a known motion-sickness trigger) */
+        .floating-badge { animation: none; }
+        /* Keep the right-hand badge on screen (it was pushed 35% past the edge and clipped) */
+        .floating-badge:nth-child(2) { right: -6%; }
+
+        /* Menu button: 44px target, ☰ becomes ✕ */
+        .mobile-menu-btn { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+        .mobile-menu-btn span { transition: transform .25s cubic-bezier(.2,.8,.2,1), opacity .2s ease; }
+        .mobile-menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .mobile-menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        @media (max-width: 768px) {
+            /* Menu drops from the header it belongs to, and leaves the same way */
+            .nav-links { display: flex; opacity: 0; visibility: hidden; transform: translateY(-8px);
+                         transition: opacity .2s ease, transform .25s cubic-bezier(.2,.8,.2,1), visibility 0s linear .25s; }
+            .nav-links.open { opacity: 1; visibility: visible; transform: none;
+                              transition: opacity .2s ease, transform .25s cubic-bezier(.2,.8,.2,1), visibility 0s; }
+        }
+
+        /* Carousel dots: real buttons with a finger-sized hit area */
+        .screen-dot { border: 0; padding: 0; cursor: pointer; position: relative;
+                      transition: width .3s cubic-bezier(.2,.8,.2,1), background-color .3s ease; }
+        .screen-dot::after { content: ''; position: absolute; inset: -12px -6px; }
+
+        /* Footer social links: 44px targets */
+        .footer-socials { gap: .25rem; }
+        .footer-social { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+        /* FAQ: "+" turns into "×" when open */
+        details summary::-webkit-details-marker { display: none; }
+        details summary > span { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+        details[open] summary > span { transform: rotate(45deg); }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+                                      transition-duration: .01ms !important; transition-delay: 0s !important; }
+            .app-screen { transition: opacity .2s ease !important; } /* gentle cross-fade instead of motion */
+        }
+        @media (prefers-reduced-transparency: reduce) {
+            header { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
+        }
+</style>
 </head>
 <body>
 
@@ -829,7 +889,7 @@
     <header class="header" id="header">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="assets/images/ezra-logo-new-transparent.png" alt="Ezra Services" class="logo-image">
+                <img src="assets/images/ezra-logo-128.webp" width="128" height="128" alt="Ezra Services" class="logo-image">
             </a>
             <nav>
                 <ul class="nav-links" id="nav-links">
@@ -840,7 +900,7 @@
                     <li><a href="#prestataires" class="nav-link provider-link">Devenir prestataire</a></li>
                 </ul>
             </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -884,31 +944,31 @@
 
                             <!-- Screen 1: Customer Home -->
                             <div class="app-screen active" id="screen-0">
-                                <img src="assets/images/app-screen-1.png" alt="Accueil client EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-1.webp" width="369" height="800" decoding="async" alt="Accueil client EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 2: Customer Bookings -->
                             <div class="app-screen" id="screen-1">
-                                <img src="assets/images/app-screen-2.png" alt="Réservations EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-2.webp" width="369" height="800" decoding="async" alt="Réservations EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 3: Provider Revenue -->
                             <div class="app-screen" id="screen-2">
-                                <img src="assets/images/app-screen-3.png" alt="Revenus prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-3.webp" width="369" height="800" decoding="async" alt="Revenus prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                             <!-- Screen 4: Provider Profile -->
                             <div class="app-screen" id="screen-3">
-                                <img src="assets/images/app-screen-4.png" alt="Profil prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                                <img src="assets/images/app-screen-4.webp" width="369" height="800" decoding="async" alt="Profil prestataire EZRA" style="width:100%;height:100%;object-fit:cover;display:block;" />
                             </div>
 
                         </div><!-- /phone-screen -->
                     </div><!-- /phone-frame -->
                     <div class="screen-dots">
-                        <div class="screen-dot active" data-screen="0"></div>
-                        <div class="screen-dot" data-screen="1"></div>
-                        <div class="screen-dot" data-screen="2"></div>
-                        <div class="screen-dot" data-screen="3"></div>
+                        <button type="button" class="screen-dot active" data-screen="0" aria-label="Afficher l'écran 1" aria-current="true"></button>
+                        <button type="button" class="screen-dot" data-screen="1" aria-label="Afficher l'écran 2"></button>
+                        <button type="button" class="screen-dot" data-screen="2" aria-label="Afficher l'écran 3"></button>
+                        <button type="button" class="screen-dot" data-screen="3" aria-label="Afficher l'écran 4"></button>
                     </div>
                 </div>
 
@@ -1288,7 +1348,7 @@
             <div class="footer-content">
                 <div>
                     <a href="#home" class="footer-logo">
-                        <img src="assets/images/ezra-logo-new-transparent.png" alt="Ezra" class="footer-logo-img">
+                        <img src="assets/images/ezra-logo-128.webp" width="128" height="128" alt="Ezra" class="footer-logo-img" loading="lazy">
                         <span class="footer-logo-text">Ezra Services</span>
                     </a>
                     <p class="footer-desc">Le service local, à portée de main. Profils contrôlés à Douala et Yaoundé — beauté, plomberie, ménage, tech et plus.</p>
@@ -1343,38 +1403,53 @@
         // Header scroll
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 80);
-        });
+        }, { passive: true });
 
         // Mobile menu
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            document.getElementById('nav-links').classList.toggle('open');
-        });
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
-        });
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        function setMenu(open) {
+            navLinks.classList.toggle('open', open);
+            menuBtn.setAttribute('aria-expanded', open);
+            menuBtn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        }
+        menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => setMenu(false)));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-        // Phone screen carousel
+        // Phone screen carousel — the visitor stays in control: pauses while touched/hovered/focused,
+        // a dot tap restarts the full interval, and it never auto-rotates for reduced-motion users
         let currentScreen = 0;
         const screens = document.querySelectorAll('.app-screen');
         const dots = document.querySelectorAll('.screen-dot');
+        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let rotateTimer = null, holding = false;
 
         function showScreen(idx) {
             screens.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
+            dots.forEach(d => { d.classList.remove('active'); d.removeAttribute('aria-current'); });
             screens[idx].classList.add('active');
             dots[idx].classList.add('active');
+            dots[idx].setAttribute('aria-current', 'true');
             currentScreen = idx;
         }
+        function stopRotation() { clearInterval(rotateTimer); rotateTimer = null; }
+        function startRotation() {
+            stopRotation();
+            if (reducedMotion || holding || document.hidden) return;
+            rotateTimer = setInterval(() => showScreen((currentScreen + 1) % screens.length), 3500);
+        }
 
-        // Auto-rotate every 3.5s
-        setInterval(() => {
-            showScreen((currentScreen + 1) % screens.length);
-        }, 3500);
-
-        // Dot click
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => showScreen(parseInt(dot.dataset.screen)));
-        });
+        dots.forEach(dot => dot.addEventListener('click', () => { showScreen(parseInt(dot.dataset.screen)); startRotation(); }));
+        const phone = document.querySelector('.phone-wrap');
+        if (phone) {
+            phone.addEventListener('pointerenter', () => { holding = true; stopRotation(); });
+            phone.addEventListener('pointerleave', () => { holding = false; startRotation(); });
+            phone.addEventListener('focusin', () => { holding = true; stopRotation(); });
+            phone.addEventListener('focusout', () => { holding = false; startRotation(); });
+        }
+        document.addEventListener('visibilitychange', startRotation);
+        startRotation();
     </script>
 </body>
 </html>

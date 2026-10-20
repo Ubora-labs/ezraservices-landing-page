@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prestataire — Ezra</title>
+  <title>Prestataire | Ezra</title>
   <meta name="description" content="Réservez ce prestataire sur Ezra" />
   <meta property="og:site_name" content="Ezra" />
   <meta property="og:type" content="profile" />
@@ -257,7 +257,7 @@
 </div>
 
 <div class="footer">
-  <p>Ezra — Services à domicile au Cameroun</p>
+  <p>Ezra · Services à domicile au Cameroun</p>
   <p style="margin-top:6px"><a href="https://ezraservice.com">ezraservice.com</a> · <a href="https://ezraservice.com/privacy-policy">Confidentialité</a></p>
 </div>
 
@@ -304,9 +304,9 @@
       const name = p.business_name || 'Prestataire Ezra';
       const location = [p.location_neighborhood, p.location].filter(Boolean).join(', ');
 
-      document.title = `${name} — Ezra`;
+      document.title = `${name} | Ezra`;
       document.querySelector('meta[name="description"]').setAttribute('content',
-        `Réservez ${name} sur Ezra — ${p.category || 'Services à domicile'} au Cameroun`);
+        `Réservez ${name} sur Ezra : ${p.category || 'Services à domicile'} au Cameroun`);
 
       document.getElementById('avatar').textContent = getInitials(name);
       document.getElementById('provider-name').textContent = name;
@@ -366,7 +366,7 @@
 
     // After 1.8s, if still here, redirect to smart store link
     setTimeout(() => {
-      statusEl.textContent = 'Application non installée — téléchargez Ezra ci-dessous';
+      statusEl.textContent = 'Application non installée. Téléchargez Ezra ci-dessous.';
       // Highlight store buttons
       document.querySelectorAll('.btn-store').forEach(el => {
         el.style.borderColor = '#FF6B35';

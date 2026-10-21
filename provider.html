@@ -103,6 +103,7 @@
     .provider-category {
       font-size: 13px; color: var(--orange); font-weight: 600; margin-bottom: 8px;
     }
+    .verified-badge[hidden] { display: none; }
     .verified-badge {
       display: inline-flex; align-items: center; gap: 4px;
       background: rgba(255,107,53,0.18);
@@ -200,7 +201,7 @@
         <div class="hero-info">
           <div class="provider-name" id="provider-name"></div>
           <div class="provider-category" id="provider-category"></div>
-          <span class="verified-badge">✓ Vérifié Ezra</span>
+          <span class="verified-badge" id="verified-badge" hidden>✓ Identité vérifiée</span>
         </div>
       </div>
 
@@ -293,7 +294,7 @@
 
     try {
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/provider_profiles?id=eq.${encodeURIComponent(id)}&select=id,business_name,category,rating,total_reviews,description,location,location_neighborhood,verified&limit=1`,
+        `${SUPABASE_URL}/rest/v1/provider_profiles?id=eq.${encodeURIComponent(id)}&select=id,business_name,category,rating,total_reviews,description,location,location_neighborhood,cni_verified&limit=1`,
         { headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' } }
       );
       const data = await res.json();
@@ -302,6 +303,8 @@
 
       const p = data[0];
       const name = p.business_name || 'Prestataire Ezra';
+      // Only providers whose ID card (CNI) was checked get the badge
+      if (p.cni_verified === true) document.getElementById('verified-badge').hidden = false;
       const location = [p.location_neighborhood, p.location].filter(Boolean).join(', ');
 
       document.title = `${name} | Ezra`;
